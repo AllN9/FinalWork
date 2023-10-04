@@ -3,53 +3,64 @@ int Greeting()
 {
     Console.Write("Введите размер массива: ");
 
-    int size = Convert.ToInt32(Console.ReadLine());
+    int n = Convert.ToInt32(Console.ReadLine());
 
-    return size;
+    return n;
 }
-string [] Filling(int size)
+string [] Filling(int n)
 {
     Console.Write("Введите ваш массив: ");
 
-    string [] mas = new string [size];
-    for(int i = 0; i < size; i++)
+    string [] mas = new string [n];
+    for(int i = 0; i < n; i++)
     {
         mas[i] = Console.ReadLine();
     }
 
     return mas;
 }
-void Check(int size, string[] mas)
+void Check(int n, string[] mas)
 {
     Console.WriteLine("Введенный вами массив: ");
 
     Console.Write("[\"" + mas[0]);
-    for(int i = 1; i < size; i++)
+    for(int i = 1; i < n; i++)
     {
         Console.Write("\", \"" + mas[i]);
     }
     Console.WriteLine("\"]");
 }
-void Result(int size, string[] mas)
+void Result(int n, string[] mas)
 {
     Console.WriteLine("Искомый массив: ");
     
-    int length;
+    int length, j = 0, k = 0;
     Console.Write("[");
-    for(int i = 0; i < size; i++)
+    while(k < n)
+    {
+        length = mas[j].Length;
+        if(length <= 3)
+        {
+            Console.Write("\"" + mas[j] + "\"");
+            k = n;
+        }
+        j++;
+        k++;
+    }
+    for(int i = j + 1; j < n; j++)
     {
         length = mas[i].Length;
         if(length <= 3)
         {
-            Console.Write("\"" + mas[i] + "\"");
+            Console.Write(", \"" + mas[i] + "\"");
         }
     }
     Console.WriteLine("]");    
 }
 //Реализация программы
-int size = Greeting();
-string [] mas = Filling(size);
+int n = Greeting();
+string [] mas = Filling(n);
 
-Check(size, mas);
+Check(n, mas);
 
-Result(size, mas);
+Result(n, mas);
